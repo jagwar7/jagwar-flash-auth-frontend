@@ -34,7 +34,6 @@ export default function RootLayout({
             <StarsBackground count={100} />
           </div>
         </div>
-        {/* top: '20%', */}
         <div className="shooting-star" style={{ opacity: 1, animationDelay: '5s', top: '0%', right: '0%' }}></div>
         <div className="shooting-star" style={{  opacity: 1, animationDelay: '8s', top: '0%', right: '50%' }}></div>
         <AuthProvider>
