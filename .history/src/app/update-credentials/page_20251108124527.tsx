@@ -93,6 +93,7 @@ export default function UpdateCredentialsPage() {
       return;
     } catch (error) {
       setIsSaveButtonDisabled(false);
+
       showAlert("Unknow Error", false);
       return;
     }

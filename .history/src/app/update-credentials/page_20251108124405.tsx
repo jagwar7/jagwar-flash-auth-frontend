@@ -77,7 +77,6 @@ export default function UpdateCredentialsPage() {
     
     if(!token){
       showAlert("Please sign in first", false);
-          setIsSaveButtonDisabled(false);
       return;
     }
     
@@ -85,14 +84,11 @@ export default function UpdateCredentialsPage() {
       const res = await CreateOrUpdate(frontendUrl, publicKey, secretKey, mongodbUri, googleClientId, googleClientSecret, tokenExpiry);
       if(res.success == false){
         showAlert(res.message, false);
-        setIsSaveButtonDisabled(false);
         return;
       }
-      setIsSaveButtonDisabled(false);
       showAlert(res.message, true);
       return;
     } catch (error) {
-      setIsSaveButtonDisabled(false);
       showAlert("Unknow Error", false);
       return;
     }

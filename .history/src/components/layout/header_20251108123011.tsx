@@ -68,7 +68,8 @@ export default function Header() {
 
   useEffect(() => {
     setIsMounted(true);
-    HandleTokenExpiry();
+    HandleTokenExpiry()
+    
   }, []);
 
   useEffect(() => {

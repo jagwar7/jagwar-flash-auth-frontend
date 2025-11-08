@@ -92,7 +92,6 @@ export default function UpdateCredentialsPage() {
       showAlert(res.message, true);
       return;
     } catch (error) {
-      setIsSaveButtonDisabled(false);
       showAlert("Unknow Error", false);
       return;
     }

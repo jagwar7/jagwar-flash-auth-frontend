@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import AuthButton from '../auth-button';
-import { HandleTokenExpiry } from '@/utils/utility';
+imoprt
 
 const FlashAuthLogo = () => (
    <svg
@@ -68,7 +68,7 @@ export default function Header() {
 
   useEffect(() => {
     setIsMounted(true);
-    HandleTokenExpiry();
+    
   }, []);
 
   useEffect(() => {

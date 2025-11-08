@@ -33,7 +33,6 @@ export default function UpdateCredentialsPage() {
   const [isGoogleClientSecretVisible, setIsGoogleClientSecretVisible] = useState(false);
   
   const [tokenExpiry, setTokenExpiry] = useState('');
-  const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(false);
 
   const generateRandomString = (length: number) => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -72,12 +71,10 @@ export default function UpdateCredentialsPage() {
 
   //UPDATE CREDENTIALS-----------------------------------------------------------------------------------------------------------
   const UpdateCredentials = async()=>{
-    setIsSaveButtonDisabled(true);
     const token = Storage.GetToken();
     
     if(!token){
       showAlert("Please sign in first", false);
-          setIsSaveButtonDisabled(false);
       return;
     }
     
@@ -85,14 +82,11 @@ export default function UpdateCredentialsPage() {
       const res = await CreateOrUpdate(frontendUrl, publicKey, secretKey, mongodbUri, googleClientId, googleClientSecret, tokenExpiry);
       if(res.success == false){
         showAlert(res.message, false);
-        setIsSaveButtonDisabled(false);
         return;
       }
-      setIsSaveButtonDisabled(false);
       showAlert(res.message, true);
       return;
     } catch (error) {
-      setIsSaveButtonDisabled(false);
       showAlert("Unknow Error", false);
       return;
     }
@@ -253,7 +247,7 @@ export default function UpdateCredentialsPage() {
                 </div>
             </div>
           </div>
-          <Button type="button" disabled = {isSaveButtonDisabled} className="w-full hover:bg-blue-800 hover:scale-95 transition-all ease-in text-slate-900 font-bold text-lg" onClick={()=>UpdateCredentials()}>
+          <Button type="button" className="w-full hover:bg-blue-800 hover:scale-95 transit" onClick={()=>UpdateCredentials()}>
             Save Credentials
           </Button>
         </CardContent>

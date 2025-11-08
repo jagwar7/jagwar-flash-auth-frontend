@@ -88,11 +88,11 @@ export default function UpdateCredentialsPage() {
         setIsSaveButtonDisabled(false);
         return;
       }
-      setIsSaveButtonDisabled(false);
+        setIsSaveButtonDisabled(false);
+
       showAlert(res.message, true);
       return;
     } catch (error) {
-      setIsSaveButtonDisabled(false);
       showAlert("Unknow Error", false);
       return;
     }
