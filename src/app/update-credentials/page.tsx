@@ -12,9 +12,12 @@ import { CreateOrUpdate, GetCredentials } from '@/APIs/CredentialsAPI';
 import { Storage } from '@/Storage/Storage';
 import { useAlert } from '@/contexts/alert-state-context';
 import {nanoid} from 'nanoid'
+import { useRouter } from 'next/navigation';
 
 export default function UpdateCredentialsPage() {
   const {showAlert} = useAlert();
+  const router = useRouter();
+
   const [frontendUrl, setFrontendUrl] = useState('');
 
   const [publicKey, setPublicKey] = useState('');
@@ -100,6 +103,13 @@ export default function UpdateCredentialsPage() {
   //-----------------------------------------------------------------------------------------------------------------------------
   
   useEffect(() => {
+    const token = Storage.GetToken();
+    if(!token){
+      showAlert("Please sign in first", false);
+      setTimeout(()=>{
+        router.push('/');
+      },2000);
+    }
     fetchAndPopulate();
   }, []);
 

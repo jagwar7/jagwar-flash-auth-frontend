@@ -12,6 +12,7 @@ import { useAlert } from '@/contexts/alert-state-context';
 import { Storage } from '@/Storage/Storage';
 import {jwtDecode} from 'jwt-decode'
 import { SignInWithGoogleController } from '@/firebase/Authentication/AuthController';
+import { useAuth } from '@/contexts/auth-context';
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -36,13 +37,14 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export default function LoginPage() {
   const {showAlert} = useAlert();
+  const {login} = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
 
   const [formData, setFormData] = useState({
-    email: '',
+    email: '',  
     password: '',
   });
 
@@ -61,15 +63,22 @@ export default function LoginPage() {
       showAlert("All the fields are required", false);
       return;
     }
-
-    const res = await SignInWithJWT(email, password);
-    if(res.success == false){
-      showAlert(res.message, false);
+    try {
+      const res = await SignInWithJWT(email, password);
+      if(res.success == false){
+        showAlert(res.message, false);
+        return;
+      }
+      
+      showAlert(res.message, true);
+      Storage.SaveToken(res.data);
+      login();
+      return;
+    } catch (error) {
+      showAlert("Unknown Error", false);
       return;
     }
-    showAlert(res.message, true);
-    Storage.SaveToken(res.data);
-    return;
+
   }
   //---------------------------------------------------------------------------------------------------------------------------
 
@@ -87,6 +96,7 @@ export default function LoginPage() {
   
         Storage.SaveToken(res.data);
         showAlert(res.message, true);
+        login();
         return;
       } catch (error) {
         showAlert("Unknow Error", false);

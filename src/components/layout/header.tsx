@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import AuthButton from '../auth-button';
 import { HandleTokenExpiry } from '@/utils/utility';
+import { useAuth } from '@/contexts/auth-context';
 
 const FlashAuthLogo = () => (
    <svg
@@ -65,6 +66,7 @@ const FlashAuthLogo = () => (
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const {user, isLoggedIn, logout} = useAuth();
 
   useEffect(() => {
     setIsMounted(true);

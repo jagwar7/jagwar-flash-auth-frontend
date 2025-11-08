@@ -45,9 +45,9 @@ export default function ProfilePage() {
               />
           </div>
           <CardTitle className="text-2xl font-headline">{user.name}</CardTitle>
-          <CardDescription>
+          {/* <CardDescription>
             <Badge variant={user.role === 'Admin' ? 'destructive' : 'secondary'}>{user.role}</Badge>
-          </CardDescription>
+          </CardDescription> */}
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-4 text-sm text-foreground">
@@ -61,11 +61,11 @@ export default function ProfilePage() {
               <span className="font-medium">Email:</span>
               <span>{user.email}</span>
             </div>
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <ShieldCheck className="h-5 w-5 text-muted-foreground" />
               <span className="font-medium">Status:</span>
               <span className="text-green-500 font-semibold">Verified</span>
-            </div>
+            </div> */}
           </div>
           <Button
             onClick={() => {

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { LogIn, LogOut, UserCircle } from 'lucide-react';
-import { useAuth } from '@/hooks/use-auth';
+// import { useAuth } from '@/hooks/use-auth';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useAuth } from '@/contexts/auth-context';
 
 export default function AuthButton() {
   const { isLoggedIn, user, login, logout } = useAuth();
