@@ -1,16 +1,22 @@
-
-import { SignInWithGoogle } from "@/APIs/GoogleAuthAPI";
-import { auth, googleProvider } from "../FirebaseConfig";
 import { signInWithPopup } from "firebase/auth";
+import { getAuthInstance, getGoogleProvider } from "../FirebaseConfig";
+import { SignInWithGoogle } from "@/APIs/GoogleAuthAPI";
 
+export const SignInWithGoogleController = async () => {
+  try {
+    const auth = getAuthInstance();           
+    const provider = getGoogleProvider();    
 
-export const SignInWithGoogleController = async()=>{
-    try {
-        const result = await signInWithPopup(auth, googleProvider);
-        const idToken = await result.user.getIdToken();
-        const data = await SignInWithGoogle(idToken);
-        return data;
-    } catch (error) {
-        return {success: false, message: 'Unknown Error'}
-    }
-}
+    const result = await signInWithPopup(auth, provider);
+    const idToken = await result.user.getIdToken();
+    const data = await SignInWithGoogle(idToken);
+
+    return data;
+  } catch (error: any) {
+    console.error("Google Sign-In Error:", error);
+    return {
+      success: false,
+      message: error.message || "Failed to sign in with Google",
+    };
+  }
+};

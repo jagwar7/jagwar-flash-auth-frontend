@@ -1,4 +1,5 @@
 'use client';
+export const dynamic = 'force-dynamic'; 
 import * as React from 'react';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -10,7 +11,6 @@ import { Mail, Lock } from 'lucide-react';
 import { SignInWithJWT } from '@/APIs/LocalAuthAPI';
 import { useAlert } from '@/contexts/alert-state-context';
 import { Storage } from '@/Storage/Storage';
-import {jwtDecode} from 'jwt-decode'
 import { SignInWithGoogleController } from '@/firebase/Authentication/AuthController';
 import { useAuth } from '@/contexts/auth-context';
 import { useRouter } from 'next/navigation';
