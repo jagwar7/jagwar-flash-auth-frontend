@@ -78,7 +78,8 @@ export default function LoginPage() {
       router.push('/') // BACK TO HOME
       return;
     } catch (error) {
-      showAlert("Unknown Error", false);
+      console.log(error);
+      showAlert(`Unknown Error: ${error}`, false);
       return;
     }
 
