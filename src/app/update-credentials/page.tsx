@@ -38,16 +38,6 @@ export default function UpdateCredentialsPage() {
   const [tokenExpiry, setTokenExpiry] = useState('');
   const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(false);
 
-  const generateRandomString = (length: number) => {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-  };
-
-
 
 
 
@@ -93,6 +83,7 @@ export default function UpdateCredentialsPage() {
       }
       setIsSaveButtonDisabled(false);
       showAlert(res.message, true);
+      router.push('/docs')
       return;
     } catch (error) {
       setIsSaveButtonDisabled(false);
@@ -107,7 +98,7 @@ export default function UpdateCredentialsPage() {
     if(!token){
       showAlert("Please sign in first", false);
       setTimeout(()=>{
-        router.push('/');
+        router.push('/login');
       },2000);
     }
     fetchAndPopulate();
@@ -152,7 +143,7 @@ export default function UpdateCredentialsPage() {
                                 value={publicKey}
                                 readOnly
                                 />
-                                <Button variant="ghost" size="icon" className="absolute right-[110px] h-8 w-8" onClick={() => setIsPublicKeyVisible(prev => !prev)}>
+                                <Button variant="ghost" size="icon" className="absolute bg-slate-900 right-[110px] h-8 w-8" onClick={() => setIsPublicKeyVisible(prev => !prev)}>
                                 {isPublicKeyVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                                 </Button>
                                 <Button variant="ghost" size="sm" className="absolute right-1" onClick={() => setPublicKey(`FA${nanoid(18)}`)}>
@@ -179,10 +170,10 @@ export default function UpdateCredentialsPage() {
                   value={secretKey}
                   readOnly
                 />
-                <Button variant="ghost" size="icon" className="absolute right-[110px] h-8 w-8" onClick={() => setIsSecretKeyVisible(prev => !prev)}>
+                <Button variant="ghost" size="icon" className="absolute bg-slate-900 right-[110px] h-8 w-8" onClick={() => setIsSecretKeyVisible(prev => !prev)}>
                   {isSecretKeyVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </Button>
-                <Button variant="ghost" size="sm" className="absolute right-1" onClick={() => setSecretKey(`FA${nanoid(18)}`)}>
+                <Button variant="ghost" size="sm" className="absolute  right-1" onClick={() => setSecretKey(`FA${nanoid(18)}`)}>
                   <RefreshCw className="h-4 w-4 mr-2" />
                   Generate
                 </Button>
@@ -200,7 +191,7 @@ export default function UpdateCredentialsPage() {
                   value={mongodbUri}
                   onChange={(e) => setMongodbUri(e.target.value)}
                 />
-                <Button variant="ghost" size="icon" className="absolute right-1 h-8 w-8" onClick={() => setIsMongodbUriVisible(prev => !prev)}>
+                <Button variant="ghost" size="icon" className="absolute bg-slate-900 right-1 h-8 w-8" onClick={() => setIsMongodbUriVisible(prev => !prev)}>
                   {isMongodbUriVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </Button>
               </div>
@@ -218,7 +209,7 @@ export default function UpdateCredentialsPage() {
                           value={googleClientId}
                           onChange={(e) => setGoogleClientId(e.target.value)}
                         />
-                        <Button variant="ghost" size="icon" className="absolute right-1 h-8 w-8" onClick={() => setIsGoogleClientIdVisible(prev => !prev)}>
+                        <Button variant="ghost" size="icon" className="absolute bg-slate-900 right-1 h-8 w-8" onClick={() => setIsGoogleClientIdVisible(prev => !prev)}>
                           {isGoogleClientIdVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </Button>
                     </div>
@@ -235,7 +226,7 @@ export default function UpdateCredentialsPage() {
                           value={googleClientSecret}
                           onChange={(e) => setGoogleClientSecret(e.target.value)}
                         />
-                        <Button variant="ghost" size="icon" className="absolute right-1 h-8 w-8" onClick={() => setIsGoogleClientSecretVisible(prev => !prev)}>
+                        <Button variant="ghost" size="icon" className="absolute bg-slate-900 right-1 h-8 w-8" onClick={() => setIsGoogleClientSecretVisible(prev => !prev)}>
                           {isGoogleClientSecretVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                         </Button>
                     </div>

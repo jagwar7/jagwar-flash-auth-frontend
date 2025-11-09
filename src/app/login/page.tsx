@@ -13,6 +13,7 @@ import { Storage } from '@/Storage/Storage';
 import {jwtDecode} from 'jwt-decode'
 import { SignInWithGoogleController } from '@/firebase/Authentication/AuthController';
 import { useAuth } from '@/contexts/auth-context';
+import { useRouter } from 'next/navigation';
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -38,6 +39,7 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function LoginPage() {
   const {showAlert} = useAlert();
   const {login} = useAuth();
+  const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -73,6 +75,7 @@ export default function LoginPage() {
       showAlert(res.message, true);
       Storage.SaveToken(res.data);
       login();
+      router.push('/') // BACK TO HOME
       return;
     } catch (error) {
       showAlert("Unknown Error", false);

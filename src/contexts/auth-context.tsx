@@ -4,7 +4,8 @@ import type { ReactNode } from 'react';
 import { createContext, useState, useMemo, useCallback, useEffect, useContext } from 'react';
 import { Storage } from '@/Storage/Storage';
 import { jwtDecode } from 'jwt-decode';
-import { HandleTokenExpiry } from '@/utils/utility';
+import { IsTokenExpired } from '@/utils/utility';
+import { useRouter } from 'next/navigation';
 
 type User = {
   id: string;
@@ -40,13 +41,14 @@ export const useAuth = ()=>{
 
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
 
   // INITIAL CHECKING IF AUTHENTICATED====================================
   useEffect(() => {
-    if(HandleTokenExpiry() === false) Storage.RemoveToken();
+    if(IsTokenExpired() === true) Storage.RemoveToken();
     const token = Storage.GetToken();
     if (token) {
       try {
@@ -95,6 +97,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // LOGOUT AND REMOVE TOKEN===============================================
   const logout = useCallback(() => {
     Storage.RemoveToken();
+    router.push('/');
     setIsLoggedIn(false);
     setUser(null);
   }, []);

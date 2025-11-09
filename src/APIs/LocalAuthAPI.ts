@@ -1,5 +1,7 @@
+import dotenv from 'dotenv';
+dotenv.config();
 
-const serverURL = process.env.NEXT_PUBLIC_SERVER_URL;
+const serverURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function SignUpWithJWT (name:string, email:string, password:string): Promise<any>{
     if(!name || !email || !password){
@@ -12,7 +14,7 @@ export async function SignUpWithJWT (name:string, email:string, password:string)
             password,
             authType : 'local'
         }
-        const url = `http://localhost:5900/api/auth/signup`;
+        const url = `${serverURL}/api/auth/signup`;
         const res = await fetch(url,{
             method:'POST',
             headers: {'Content-Type': 'application/json'},
@@ -34,7 +36,7 @@ export async function SignInWithJWT(email:string, password:string):Promise<any>{
     }
     try {
         const payload = {email, password, authType: 'local'};
-        const url = `http://localhost:5900/api/auth/signin`;
+        const url = `${serverURL}/api/auth/signin`;
 
         const res = await fetch(url, {
             method: 'POST', 

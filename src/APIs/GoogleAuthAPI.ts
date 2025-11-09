@@ -1,9 +1,11 @@
+import dotenv from 'dotenv';
+dotenv.config();
 
-
+const serverURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const SignInWithGoogle = async(googleToken:string)=>{
 
-    const url =  `http://localhost:5900/api/auth/signin`;
+    const url =  `${serverURL}/api/auth/signin`;
 
     const payload = {
         authType : 'google'

@@ -1,15 +1,16 @@
-const serverURL = process.env.NEXT_PUBLIC_SERVER_URL;
 import { Storage } from "@/Storage/Storage";
 import { jwtDecode } from "jwt-decode";
+import dotenv from 'dotenv';
+dotenv.config();
 
-
+const serverURL = process.env.NEXT_PUBLIC_BASE_URL;
 export async function GetCredentials():Promise<any | null>{
     const token = Storage.GetToken();
     if(!token){
         return {success: false, message: "No authentication token found. Please sign in"}
     }
 
-    const url =  `http://localhost:5900/flashauth/credentials/get`;
+    const url =  `${serverURL}/flashauth/credentials/get`;
     try {
         const res = await fetch(url, 
             {
@@ -42,7 +43,7 @@ export async function CreateOrUpdate(clientFrontEndURL:string, clientPublicKey:s
     }
 
     try {
-        const url = `http://localhost:5900/flashauth/credentials/update`;
+        const url = `${serverURL}/flashauth/credentials/update`;
         console.log(url);
         const payload = {
             clientFrontEndURL,
