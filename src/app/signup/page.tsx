@@ -19,7 +19,7 @@ import { useAlert } from '@/contexts/alert-state-context';
 import { Storage } from '@/Storage/Storage';
 import { SignInWithGoogleController } from '@/firebase/Authentication/AuthController';
 import { useAuth } from '@/contexts/auth-context';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
