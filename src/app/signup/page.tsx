@@ -19,6 +19,7 @@ import { useAlert } from '@/contexts/alert-state-context';
 import { Storage } from '@/Storage/Storage';
 import { SignInWithGoogleController } from '@/firebase/Authentication/AuthController';
 import { useAuth } from '@/contexts/auth-context';
+import { useRouter } from 'next/router';
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -42,6 +43,7 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function SignupPage() {
   const {showAlert} = useAlert();
   const {login} = useAuth();
+  const router = useRouter();
 
 
   const [formData, setFormData] = useState({
@@ -86,6 +88,7 @@ export default function SignupPage() {
     showAlert(res.message, true);
     Storage.SaveToken(res.data);
     login();
+    router.push('/docs');
     return;
   }
   //--------------------------------------------------------------------------------------------------------------
@@ -107,6 +110,7 @@ export default function SignupPage() {
       Storage.SaveToken(res.data);
       showAlert(res.message, true);
       login();
+      router.push('/update-credentials');
       return;
     } catch (error) {
       showAlert("Unknow Error", false);

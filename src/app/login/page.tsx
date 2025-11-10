@@ -101,6 +101,7 @@ export default function LoginPage() {
         Storage.SaveToken(res.data);
         showAlert(res.message, true);
         login();
+        router.push('/update-credentials');
         return;
       } catch (error) {
         showAlert("Unknow Error", false);
