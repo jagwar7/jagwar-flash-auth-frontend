@@ -37,7 +37,7 @@ export default function LiveDemo() {
 
   return (
     <section id="live-demo" className="text-center">
-       <h2 className="text-3xl font-bold font-headline tracking-tighter sm:text-4xl md:text-5xl">
+       {/* <h2 className="text-3xl font-bold font-headline tracking-tighter sm:text-4xl md:text-5xl">
         See It in Action
       </h2>
       <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed mt-4">
@@ -95,7 +95,7 @@ export default function LiveDemo() {
             )}
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
     </section>
   );
 }
