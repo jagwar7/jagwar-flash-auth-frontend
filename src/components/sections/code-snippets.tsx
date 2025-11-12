@@ -5,7 +5,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { CopyButton } from '@/components/copy-button';
 
 const snippets = {
-  login: `const HandleGoogleSignIn = async () => {
+  login: `import FlashAuthClient from 'flashauthbyjagwar'
+  
+  const HandleGoogleSignIn = async () => {
   if (!client) return;
   try {
     let userData = await client.SignInWithGoogle();
@@ -15,24 +17,30 @@ const snippets = {
     console.error("Google Sign-In Error:", error);
   }
 };`,
-  logout: `import { useFlashAuth } from '@flashauth/sdk';
+  logout: `import FlashAuthClient from 'flashauthbyjagwar'';
 
-function LogoutButton() {
-  const { logout } = useFlashAuth();
+const Logout = async()=>{
+  try{
+    const signoutRes = await client.SignOut();
+    return signoutRes;
+  }catch(err){
+    console.log("There is an error while logout");
+  }
+}
+`,
+  profile: `import FlashAuthClient from 'flashauthbyjagwar';
 
-  return <button onClick={logout}>Log Out</button>;
-}`,
-  profile: `import { useFlashAuth } from '@flashauth/sdk';
-
-function UserProfile() {
-  const { user, isLoading } = useFlashAuth();
-
-  if (isLoading) return <p>Loading...</p>;
-  if (!user) return <p>Not logged in</p>;
-
-  return <div>Welcome, {user.name}!</div>;
+const FetchUserData =async()=>{
+  try {
+    const data = await client.FetchUserProfile();
+    return data;
+  } catch (error) {
+    console.log("There is an error to fetch user data");
+  }
 }`,
 };
+
+
 
 const CodeBlock = ({ code }: { code: string }) => (
   <div className="relative group">
