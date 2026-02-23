@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flashauth.connectjagwar.online/sitemap.xml
+
