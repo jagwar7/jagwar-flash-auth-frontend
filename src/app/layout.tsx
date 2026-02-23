@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'Flash Auth | Secure Authentication by Jagwar',
   description: 'The fastest authentication service for modern web apps. Sites beyond imagination, one prompt away.',
   verification: {
-    google: "a7zl-r20OBdg6NWaoXx7pszJ5Pa1Kh4vnHh5_JT7ay0", // Replace with the code from Search Console
+    google: "a7zl-r20OBdg6NWaoXx7pszJ5Pa1Kh4vnHh5_JT7ay0",
   },
 };
 
