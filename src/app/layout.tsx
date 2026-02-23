@@ -10,9 +10,13 @@ import StarsBackground from '@/components/stars-background';
 import { AlertProvider } from '@/contexts/alert-state-context';
 
 export const metadata: Metadata = {
-  title: 'Flash⚡Auth by jagwar',
-  description: 'Sites beyond imagination, one prompt away.',
+  title: 'Flash Auth | Secure Authentication by Jagwar',
+  description: 'The fastest authentication service for modern web apps. Sites beyond imagination, one prompt away.',
+  verification: {
+    google: "a7zl-r20OBdg6NWaoXx7pszJ5Pa1Kh4vnHh5_JT7ay0", // Replace with the code from Search Console
+  },
 };
+
 
 export default function RootLayout({
   children,
