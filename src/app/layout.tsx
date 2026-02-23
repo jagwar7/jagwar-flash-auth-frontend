@@ -36,9 +36,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      {/* NOTE: We removed the manual <head> section. 
-          Next.js automatically handles fonts and metadata now.
-      */}
       <body className={cn(
         inter.variable, 
         'font-body antialiased min-h-screen flex flex-col relative'
