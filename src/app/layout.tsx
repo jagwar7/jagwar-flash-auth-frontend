@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google'; // Modern font loading
+import { Inter } from 'next/font/google'; 
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { AuthProvider } from '@/contexts/auth-context';
@@ -10,7 +10,6 @@ import SupportChat from '@/components/support-chat';
 import StarsBackground from '@/components/stars-background';
 import { AlertProvider } from '@/contexts/alert-state-context';
 
-// This is where your SEO "Flash Auth" ranking happens
 const inter = Inter({ 
   subsets: ['latin'],
   display: 'swap',
@@ -24,6 +23,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
+  openGraph: {
+    title: 'Flash Auth | Secure Authentication',
+    description: 'Modern authentication service for web apps.',
+    url: 'https://flashauth.connectjagwar.online',
+    siteName: 'Flash Auth',
+    type: 'website',
+  },
   verification: {
     google: "a7zl-r20OBdg6NWaoXx7pszJ5Pa1Kh4vnHh5_JT7ay0",
   },
@@ -34,8 +40,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Structured Data to fix the "Flash Auth" brand identity
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Flash Auth",
+    "alternateName": "Flash Auth by Jagwar",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Web",
+    "url": "https://flashauth.connectjagwar.online/",
+    "author": {
+      "@type": "Person",
+      "name": "Jagwar"
+    }
+  };
+
   return (
     <html lang="en" className="dark">
+      <head>
+        
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={cn(
         inter.variable, 
         'font-body antialiased min-h-screen flex flex-col relative'
