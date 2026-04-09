@@ -10,6 +10,9 @@ export const SignInWithGoogleController = async () => {
     const result = await signInWithPopup(auth, provider);
     const idToken = await result.user.getIdToken();
     const data = await SignInWithGoogle(idToken);
+    if(!data){
+      throw new Error('NO AUTH TOKEN RECEIVED');
+    }
 
     return data;
   } catch (error: any) {

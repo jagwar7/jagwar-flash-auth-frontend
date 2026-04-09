@@ -14,6 +14,7 @@ import { Storage } from '@/Storage/Storage';
 import { SignInWithGoogleController } from '@/firebase/Authentication/AuthController';
 import { useAuth } from '@/contexts/auth-context';
 import { useRouter } from 'next/navigation';
+import { RequestPasswordReset } from '@/APIs/PasswordResetAPI';
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -41,8 +42,8 @@ export default function LoginPage() {
   const {login} = useAuth();
   const router = useRouter();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
 
 
   const [formData, setFormData] = useState({
@@ -110,12 +111,25 @@ export default function LoginPage() {
     }
     //--------------------------------------------------------------------------------------------------------------
   
+
+
+
+    //--------------------------------------------------------------------------------------------------------------
+    const PasswordResetRequest=async(email:string)=>{
+      if(formData.email.length <=8){
+        showAlert("Please enter your valid email", false);
+      }
+      const res = await RequestPasswordReset(email);
+      console.log(res);
+
+    }
+
   
 
 
   
   
-  const isGoogleDisabled = email.length > 0 || password.length > 0;
+  const isGoogleDisabled = formData.email.length > 0 || formData.password.length > 0;
 
   return (
     <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center px-4">
@@ -155,6 +169,9 @@ export default function LoginPage() {
                   placeholder="••••••••"
                 />
               </div>
+              <button className='text-sm text-blue-500 font-semibold pl-1 underline'
+                onClick={()=>PasswordResetRequest(formData.email)}
+              >forgot password?</button>
             </div>
             <Button type="button" className="w-full" onClick={()=>OnSignInFormSubmit(formData.email, formData.password)}>
               Sign In

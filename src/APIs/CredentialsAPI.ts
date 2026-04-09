@@ -16,7 +16,8 @@ export async function GetCredentials():Promise<any | null>{
             {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer local:${token}`
+                    'Authorization': `Bearer local:${token}`,
+                    'X-AuthProvider': 'local'
                 },
             }
         )

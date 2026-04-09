@@ -16,8 +16,8 @@ const FlashAuthLogo = () => (
   >
     <defs>
         <linearGradient id="brandGradient" x1="0%" y1="50%" x2="100%" y2="50%">
-            <stop offset="0%" stopColor="#ff4500" />
-            <stop offset="100%" stopColor="#ff7a4d" />
+            <stop offset="0%" stopColor="#ff4500" suppressHydrationWarning />
+            <stop offset="100%" stopColor="#ff7a4d" suppressHydrationWarning />
         </linearGradient>
     </defs>
     <text
