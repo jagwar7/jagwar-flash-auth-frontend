@@ -12,12 +12,14 @@ export async function SignUpWithJWT (name:string, email:string, password:string)
             email, 
             name,
             password,
-            authType : 'local'
         }
         const url = `${serverURL}/api/auth/signup`;
         const res = await fetch(url,{
             method:'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'X-AuthProvider' : 'local'
+            },
             body : JSON.stringify(payload)
         });
         
@@ -32,15 +34,15 @@ export async function SignUpWithJWT (name:string, email:string, password:string)
 
 export async function SignInWithJWT(email:string, password:string):Promise<any>{
     if(!email || !password){
-        throw new Error("Missing email or password");
+        return {success: false, message: "CLIENT ERROR: Invalid Credentials"};
     }
     try {
-        const payload = {email, password, authType: 'local'};
+        const payload = {email, password};
         const url = `${serverURL}/api/auth/signin`;
 
         const res = await fetch(url, {
             method: 'POST', 
-            headers: {'Content-Type' : 'application/json'},
+            headers: {'Content-Type' : 'application/json', 'X-AuthProvider' : 'local'},
             body: JSON.stringify(payload)
         });
 
@@ -48,6 +50,6 @@ export async function SignInWithJWT(email:string, password:string):Promise<any>{
 
         return data;
     } catch (error) {
-        throw new Error("There is an error with sign in");
+        return {success: false, message: "UNKNOWN CLIENT ERROR"};
     }
 }

@@ -16,7 +16,8 @@ export async function GetCredentials():Promise<any | null>{
             {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer local:${token}`
+                    'Authorization': `Bearer ${token}`,
+                    'X-AuthProvider': 'local'
                 },
             }
         )
@@ -59,8 +60,9 @@ export async function CreateOrUpdate(clientFrontEndURL:string, clientPublicKey:s
                 method: 'PUT',
                 credentials: 'include',
                 headers: {
-                    'Content-Type' : 'application/json',
-                    'Authorization': `Bearer local:${token}`
+                    'Content-Type'  : 'application/json',
+                    'Authorization' : `Bearer ${token}`,
+                    'X-AuthProvider': `local`
                 },
                 body: JSON.stringify(payload)
             }
