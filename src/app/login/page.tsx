@@ -42,10 +42,6 @@ export default function LoginPage() {
   const {login} = useAuth();
   const router = useRouter();
 
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-
-
   const [formData, setFormData] = useState({
     email: '',  
     password: '',
@@ -115,15 +111,16 @@ export default function LoginPage() {
 
 
     //--------------------------------------------------------------------------------------------------------------
-    const PasswordResetRequest=async(email:string)=>{
+    const PasswordResetRequest = async(email:string)=>{
       if(formData.email.length <=8){
-        showAlert("Please enter your valid email", false);
+        showAlert("PLEASE ENTER YOUR VALID MAIL ID", false);
+        return;
       }
       const res = await RequestPasswordReset(email);
-      console.log(res);
-
+      showAlert(res.message, res.success);
     }
-
+    //--------------------------------------------------------------------------------------------------------------
+    
   
 
 

@@ -20,9 +20,9 @@ export async function RequestPasswordReset(email:string):Promise<any | null>{
             }
         );
         const data = await res.json();
-        console.log(data);
+        return data;
     } catch (error) {
-        console.log(error);
+        return {success: false, message: "UNEXPECTED ERROR"};
     }
 }
 
