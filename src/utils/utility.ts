@@ -13,9 +13,9 @@ export function IsTokenExpired():boolean{
         }     
         const currentTime = Math.floor(Date.now() / 1000);
         if(decoded.exp < currentTime){
-            console.log('EXPIRY STATE');
+            // console.log('EXPIRY STATE');
         }else{
-            console.log("DONT EXPIRE")
+            // console.log("DONT EXPIRE")
         }
         return decoded.exp < currentTime; 
     

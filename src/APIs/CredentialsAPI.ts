@@ -67,12 +67,10 @@ export async function CreateOrUpdate(clientFrontEndURL:string, clientPublicKey:s
                 body: JSON.stringify(payload)
             }
         );
-        console.log(res);
         const data = await res.json();
-        console.log(data);
         return data;
     } catch (error) {
-        return {success: false, message: "Unknown Error"}
+        return {success: false, message: `Unknown Error: ${error}`}
     }
 
 }
