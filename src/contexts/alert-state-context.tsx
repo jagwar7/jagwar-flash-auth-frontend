@@ -19,6 +19,7 @@ export function AlertProvider({ children }: { children: ReactNode }) {
   const [alert, setAlert] = useState<Alert | null>(null);
 
   const showAlert = (message: string, isPositive = true) => {
+    message.toUpperCase();
     setAlert({ message, isPositive });
     setTimeout(() => setAlert(null), 4000);
   };

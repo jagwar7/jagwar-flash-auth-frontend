@@ -45,10 +45,17 @@ export default function UpdateCredentialsPage() {
   const fetchAndPopulate=async()=>{
     const token = Storage.GetToken();
     if(!token){
+      showAlert("NO TOKEN FOUND, PLEASE SIGN IN.", false);
+      router.push('/login');
       return;
     }
     
     const res = await GetCredentials();
+    if(res.success == false){
+      showAlert(res.message, false);
+      return;
+    }
+    
     setFrontendUrl(res.data.clientFrontEndURL);
     setPublicKey(res.data.clientPublicKey);
     setSecretKey(res.data.clientSecretKey);
