@@ -17,7 +17,7 @@ const CodeBlock = ({ code }: { code: string }) => (
   </div>
 );
 
-const redirectUrl = "https://jagwar-flash-auth.onrender.com/api/flashauth/google/callback";
+const redirectUrl = "https://jagwar-flash-auth-v2.onrender.com/api/flashauth/google/callback";
 const originUrl = "https://jagwar-flash-auth.onrender.com";
 const firebasePath = "Firebase Console > Authentication > Sign-in method > Google > Enable"
 const googleCloudPath= "Google Cloud Console > Choose Same Firebase Project > API & Services > Credentials > OAuth 2.0 Client IDs"
