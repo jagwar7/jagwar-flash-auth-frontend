@@ -17,8 +17,11 @@ const CodeBlock = ({ code }: { code: string }) => (
   </div>
 );
 
-const redirectUrl = "https://jagwar-flash-auth.onrender.com/api/flashauth/google/callback";
+const redirectUrl = "https://jagwar-flash-auth-v2.onrender.com/api/flashauth/google/callback";
 const originUrl = "https://jagwar-flash-auth.onrender.com";
+const firebasePath = "Firebase Console > Authentication > Sign-in method > Google > Enable"
+const googleCloudPath= "Google Cloud Console > Choose Same Firebase Project > API & Services > Credentials > OAuth 2.0 Client IDs"
+
 
 const steps = [
   {
@@ -109,6 +112,37 @@ export default function DocsPage() {
       <div className="max-w-4xl mx-auto space-y-12">
         <div>
             <h2 className="text-2xl font-bold font-headline tracking-tight mb-4 text-center">Prerequisites</h2>
+            <Alert className='my-8'>
+              <Terminal className="h-4 w-4" />
+              <AlertTitle>Create <span className='text-lg font-bold'> Firebase Project</span></AlertTitle>
+              <AlertDescription>
+                <p className="mb-2">You must have a Firebase Project for Google OAuth</p>
+                
+                <div className="space-y-4 mt-4">
+                    <div>
+                        <p className="font-medium text-foreground mb-1">Create Firebase Project, Click on the link below.</p>
+                         <div className="relative group bg-muted/50 p-2 rounded-lg text-sm flex items-center justify-between">
+                            <a href='https://firebase.google.com/docs/web/setup' className="font-mono text-blue-600 underline">https://firebase.google.com/docs/web/setup</a>
+                        </div>
+                        
+                    </div>
+
+                    <div>
+                        <p className="font-medium text-foreground mb-1">Enable Google Sign In</p>
+                         <div className="relative group bg-muted/50 p-2 rounded-lg text-sm flex items-center justify-between">
+                            <code className="font-mono text-blue-600">{firebasePath}</code>
+                        </div>
+                        
+                    </div>
+                </div>
+
+              </AlertDescription>
+            </Alert>
+
+
+
+
+
             <Alert>
               <Terminal className="h-4 w-4" />
               <AlertTitle>Google Cloud Console Configuration</AlertTitle>
@@ -116,6 +150,14 @@ export default function DocsPage() {
                 <p className="mb-2">For Google Sign-In to work, you must add the following URLs to your Google Cloud Console configuration.</p>
                 
                 <div className="space-y-4 mt-4">
+                    <div>
+                        <p className="font-medium text-foreground mb-1">Sign in into Google Cloud Console</p>
+                         <div className="relative group bg-muted/50 p-2 rounded-lg text-sm flex items-center justify-between">
+                            <code className="font-mono">{googleCloudPath}</code>
+                            
+                        </div>
+                       
+                    </div>
                     <div>
                         <p className="font-medium text-foreground mb-1">Authorized redirect URI</p>
                          <div className="relative group bg-muted/50 p-2 rounded-lg text-sm flex items-center justify-between">
